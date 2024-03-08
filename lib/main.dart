@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:weather_app/pages/home.dart';
+import 'package:weather_app/pages/weather_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,19 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(
-                  "assets/images/background-image.png",
-                ),
-                fit: BoxFit.cover),
-          ),
-        ),
-      ),
+      home: WeatherPage(),
     );
   }
 }
