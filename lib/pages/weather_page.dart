@@ -14,7 +14,7 @@ class WeatherPage extends StatelessWidget {
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color.fromARGB(255, 38, 33, 67),
+              Color.fromARGB(255, 28, 23, 60),
               Color.fromARGB(255, 25, 23, 47)
             ],
             begin: Alignment.topLeft,
@@ -46,7 +46,7 @@ class WeatherPage extends StatelessWidget {
               child: CupertinoSearchTextField(
                 controller: _textController,
                 style: const TextStyle(color: Colors.grey),
-                backgroundColor: Color.fromARGB(255, 21, 6, 41),
+                backgroundColor: const Color.fromARGB(178, 14, 4, 27),
               ),
             ),
             Expanded(child: WeatherList()),
