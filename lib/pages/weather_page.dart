@@ -25,24 +25,22 @@ class WeatherPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(
-                top: 48.0,
-                bottom: 8.0,
-                left: 32.0,
-              ),
-              child: Text(
-                'Weather',
-                style: TextStyle(
-                    decoration: TextDecoration.none,
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontFamily: 'SFPRODISPLAY',
-                    fontWeight: FontWeight.w400),
+            const SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                child: Text(
+                  'Weather',
+                  style: TextStyle(
+                      decoration: TextDecoration.none,
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontFamily: 'SFPRODISPLAY',
+                      fontWeight: FontWeight.w400),
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: CupertinoSearchTextField(
                 controller: _textController,
                 style: const TextStyle(color: Colors.grey),
