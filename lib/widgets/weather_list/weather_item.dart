@@ -77,7 +77,7 @@ class WeatherItem extends StatelessWidget {
                     height: 50,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: Text(
                       weather.weatherType.weatherName,
                       style: const TextStyle(color: Colors.white),
