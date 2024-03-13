@@ -29,6 +29,40 @@ enum WeatherType {
         throw Exception('Unknown WeatherType: $this');
     }
   }
+
+  String get weatherName {
+    switch (this) {
+      case WeatherType.wind:
+        return 'Tornado';
+      case WeatherType.zap:
+        return 'Electrical Storm';
+      case WeatherType.windyRainySun:
+        return 'Cloudy';
+      case WeatherType.cloudyWindyMoon:
+        return 'Fast wind';
+      case WeatherType.rainyMoon:
+        return 'Mid Rain';
+      case WeatherType.rainySun:
+        return 'Rainy';
+      case WeatherType.windyMoon:
+        return 'Clear night with a breeze';
+      default:
+        throw Exception('Unknown WeatherType: $this');
+    }
+  }
 }
 
-class Weather {}
+class Weather {
+  Weather({
+    required this.location,
+    required this.temperature,
+    required this.temperatureMin,
+    required this.temperatureMax,
+    required this.weatherType,
+  });
+  final String location;
+  final int temperature;
+  final int temperatureMin;
+  final int temperatureMax;
+  final WeatherType weatherType;
+}
