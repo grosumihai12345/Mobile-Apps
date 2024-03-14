@@ -9,7 +9,6 @@ class WeatherItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-
     return SizedBox(
       height: screenHeight < 700 ? screenHeight * 0.3 : screenHeight * 0.27,
       child: Stack(
@@ -41,17 +40,15 @@ class WeatherItem extends StatelessWidget {
                         fontWeight: FontWeight.normal,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 16,
-                      ),
-                      child: Text(
-                        'H:${weather.temperatureMax}° L:${weather.temperatureMin}°',
-                        style: GoogleFonts.oxygen(
-                          color: Colors.grey,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                        ),
+                    SizedBox(
+                      height: screenHeight < 700 ? 20 : 40,
+                    ),
+                    Text(
+                      'H:${weather.temperatureMax}° L:${weather.temperatureMin}°',
+                      style: GoogleFonts.oxygen(
+                        color: Colors.grey,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     Text(
@@ -78,7 +75,7 @@ class WeatherItem extends StatelessWidget {
                       height: 60,
                     ),
                     Text(
-                      weather.weatherType.weatherName,
+                      weather.weatherType.description,
                       style: GoogleFonts.openSans(
                         color: Colors.white,
                         fontSize: 16,

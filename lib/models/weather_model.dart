@@ -28,7 +28,7 @@ enum WeatherType {
     }
   }
 
-  String get weatherName {
+  String get description {
     switch (this) {
       case WeatherType.wind:
         return 'Tornado';

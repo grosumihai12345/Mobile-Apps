@@ -5,8 +5,7 @@ import 'package:weather_app/widgets/weather_list/weather_list.dart';
 
 class WeatherPage extends StatelessWidget {
   const WeatherPage({super.key});
-  // final TextEditingController _textController =
-  //     TextEditingController(text: 'Search for a city or airport');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +41,6 @@ class WeatherPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: CupertinoSearchTextField(
-                  //  controller: _textController,
                   style: TextStyle(color: Colors.grey),
                   backgroundColor: Color.fromARGB(178, 14, 4, 27),
                   itemColor: Colors.grey,
