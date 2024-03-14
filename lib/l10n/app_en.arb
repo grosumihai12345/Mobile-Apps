@@ -1,0 +1,12 @@
+{
+  "helloWorld": "Hello World!",
+  "midRainLabel": "Mid Rain",
+  "tornadoLabel": "Tornado",
+  "electricalStormLabel": "Electrical Storm",
+  "cloudyLabel": "Cloudy",
+  "fastWindLabel": "Fast wind",
+  "rainyLabel": "Rainy",
+  "clearNightLabel": "Clear night with a breeze",
+  "searchPlaceholder": "Search for a city or airport",
+  "weatherLabel": "Weather"
+}

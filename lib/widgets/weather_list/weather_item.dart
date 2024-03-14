@@ -81,7 +81,7 @@ class WeatherItem extends StatelessWidget {
                       height: 60,
                     ),
                     Text(
-                      weather.weatherType.weatherName,
+                      weather.weatherType.weatherName(context),
                       style: GoogleFonts.openSans(
                         color: Colors.white,
                         fontSize: maxMinTemperatureFontSize,

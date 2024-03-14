@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:weather_app/utils/assets_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum WeatherType {
   cloudyWindyMoon,
@@ -30,22 +32,22 @@ enum WeatherType {
     }
   }
 
-  String get weatherName {
+  String weatherName(BuildContext context) {
     switch (this) {
       case WeatherType.wind:
-        return 'Tornado';
+        return AppLocalizations.of(context)!.tornadoLabel;
       case WeatherType.zap:
-        return 'Electrical Storm';
+        return AppLocalizations.of(context)!.electricalStormLabel;
       case WeatherType.windyRainySun:
-        return 'Cloudy';
+        return AppLocalizations.of(context)!.cloudyLabel;
       case WeatherType.cloudyWindyMoon:
-        return 'Fast wind';
+        return AppLocalizations.of(context)!.fastWindLabel;
       case WeatherType.rainyMoon:
-        return 'Mid Rain';
+        return AppLocalizations.of(context)!.midRainLabel;
       case WeatherType.rainySun:
-        return 'Rainy';
+        return AppLocalizations.of(context)!.rainyLabel;
       case WeatherType.windyMoon:
-        return 'Clear night with a breeze';
+        return AppLocalizations.of(context)!.clearNightLabel;
       default:
         throw Exception('Unknown WeatherType: $this');
     }
