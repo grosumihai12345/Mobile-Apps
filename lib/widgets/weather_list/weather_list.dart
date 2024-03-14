@@ -38,6 +38,7 @@ class WeatherList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 32.0),
       itemCount: weatherList.length,
       itemBuilder: (ctx, index) => WeatherItem(
         weatherList[index],

@@ -38,6 +38,9 @@ dependencies:
   json_annotation: ^4.8.1
   uuid: ^4.3.3
   google_fonts: ^6.2.1
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
