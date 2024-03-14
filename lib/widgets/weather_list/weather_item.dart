@@ -9,12 +9,9 @@ class WeatherItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final temperatureFontSize = screenHeight * 0.08;
-    final maxMinTemperatureFontSize = screenHeight * 0.015;
-    final locationFontSize = screenHeight * 0.02;
 
     return SizedBox(
-      height: screenHeight * 0.27,
+      height: screenHeight < 700 ? screenHeight * 0.3 : screenHeight * 0.27,
       child: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
@@ -40,7 +37,7 @@ class WeatherItem extends StatelessWidget {
                       '${weather.temperature}°',
                       style: GoogleFonts.poppins(
                         color: Colors.white,
-                        fontSize: temperatureFontSize,
+                        fontSize: 58,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -52,7 +49,7 @@ class WeatherItem extends StatelessWidget {
                         'H:${weather.temperatureMax}° L:${weather.temperatureMin}°',
                         style: GoogleFonts.oxygen(
                           color: Colors.grey,
-                          fontSize: maxMinTemperatureFontSize,
+                          fontSize: 16,
                           fontWeight: FontWeight.w800,
                         ),
                       ),
@@ -61,7 +58,7 @@ class WeatherItem extends StatelessWidget {
                       weather.location,
                       style: GoogleFonts.openSans(
                         color: Colors.white,
-                        fontSize: locationFontSize,
+                        fontSize: 20,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -84,7 +81,7 @@ class WeatherItem extends StatelessWidget {
                       weather.weatherType.weatherName,
                       style: GoogleFonts.openSans(
                         color: Colors.white,
-                        fontSize: maxMinTemperatureFontSize,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
                     ),

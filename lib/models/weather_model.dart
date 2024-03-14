@@ -25,8 +25,6 @@ enum WeatherType {
         return AssetsUtils.rainySunIconPath;
       case WeatherType.windyMoon:
         return AssetsUtils.windyMoonIconPath;
-      default:
-        throw Exception('Unknown WeatherType: $this');
     }
   }
 
