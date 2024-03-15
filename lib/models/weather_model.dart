@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:weather_app/utils/assets_utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -27,12 +26,10 @@ enum WeatherType {
         return AssetsUtils.rainySunIconPath;
       case WeatherType.windyMoon:
         return AssetsUtils.windyMoonIconPath;
-      default:
-        throw Exception('Unknown WeatherType: $this');
     }
   }
 
-  String weatherName(BuildContext context) {
+  String description(context) {
     switch (this) {
       case WeatherType.wind:
         return AppLocalizations.of(context)!.tornadoLabel;
@@ -48,8 +45,6 @@ enum WeatherType {
         return AppLocalizations.of(context)!.rainyLabel;
       case WeatherType.windyMoon:
         return AppLocalizations.of(context)!.clearNightLabel;
-      default:
-        throw Exception('Unknown WeatherType: $this');
     }
   }
 }

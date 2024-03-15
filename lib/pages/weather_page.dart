@@ -8,16 +8,18 @@ class WeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            center: const Alignment(-0.2, -0.4),
+            radius: 0.6,
             colors: [
-              Color.fromARGB(255, 28, 23, 60),
-              Color.fromARGB(255, 25, 23, 47)
+              theme.primaryColor,
+              theme.hintColor,
             ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
           ),
         ),
         child: SafeArea(
@@ -27,26 +29,26 @@ class WeatherPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 32.0, vertical: 16.0),
                 child: Text(
                   AppLocalizations.of(context)!.weatherLabel,
-                  style: const TextStyle(
-                      decoration: TextDecoration.none,
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontFamily: 'SFPRODISPLAY',
-                      fontWeight: FontWeight.w400),
+                  style: theme.textTheme.displayLarge,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: CupertinoSearchTextField(
-                  style: const TextStyle(color: Colors.grey),
-                  backgroundColor: const Color.fromARGB(178, 14, 4, 27),
-                  itemColor: Colors.grey,
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(color: theme.textTheme.bodyMedium!.color),
+                  backgroundColor: theme.inputDecorationTheme.fillColor,
+                  itemColor: theme.textTheme.bodyMedium!.color!,
                   suffixMode: OverlayVisibilityMode.never,
+                  prefixInsets: const EdgeInsets.all(6.0),
                   placeholder: AppLocalizations.of(context)!.searchPlaceholder,
+                  placeholderStyle: theme.textTheme.bodyMedium
+                      ?.copyWith(color: Colors.grey, fontSize: 18),
                 ),
               ),
               Expanded(child: WeatherList()),
