@@ -37,11 +37,18 @@ class WeatherList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 32.0),
+      padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 18.0),
       itemCount: weatherList.length,
       itemBuilder: (ctx, index) => WeatherItem(
         weatherList[index],
+        textStyle: TextStyle(
+          color: theme.textTheme.bodyMedium!.color,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
       ),
     );
   }
