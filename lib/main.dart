@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:weather_app/pages/weather_page.dart';
+import 'package:weather_app/utils/colors_utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,38 +19,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
-          primary: Color.fromARGB(
-            255,
-            107,
-            40,
-            131,
-          ),
+          primary: AppColors.primary,
           onPrimary: Colors.white,
-          secondary: Color.fromARGB(
-            155,
-            25,
-            23,
-            47,
-          ),
-          onSecondary: Colors.grey,
-          error: Colors.red,
+          secondary: AppColors.secondary,
+          onSecondary: AppColors.primary,
+          error: AppColors.error,
           onError: Colors.white,
-          background: Color.fromARGB(
-            255,
-            28,
-            23,
-            60,
-          ),
+          background: AppColors.background,
           onBackground: Colors.white,
-          surface: Colors.grey,
+          surface: AppColors.surface,
           onSurface: Colors.black,
         ),
-        scaffoldBackgroundColor: const Color.fromARGB(
-          255,
-          28,
-          23,
-          60,
-        ),
+        scaffoldBackgroundColor: AppColors.background,
         textTheme: ThemeData().textTheme.copyWith(
               displayLarge: const TextStyle(
                 color: Colors.white,
@@ -68,18 +49,13 @@ class MyApp extends StatelessWidget {
               ),
             ),
         inputDecorationTheme: const InputDecorationTheme(
-          fillColor: Color.fromARGB(
-            178,
-            14,
-            4,
-            27,
-          ),
+          fillColor: AppColors.fillColor,
           hintStyle: TextStyle(
             color: Colors.grey,
           ),
         ),
-        cupertinoOverrideTheme: CupertinoThemeData(
-          primaryColor: ThemeData().scaffoldBackgroundColor,
+        cupertinoOverrideTheme: const CupertinoThemeData(
+          primaryColor: AppColors.background,
         ),
       ),
       home: const WeatherPage(),
