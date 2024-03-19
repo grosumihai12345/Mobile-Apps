@@ -25,6 +25,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+# https://pub.dev/packages/http
+  http: ^1.2.1
 
 dev_dependencies:
   flutter_test:
