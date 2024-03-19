@@ -13,6 +13,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
 # https://pub.dev/packages/cupertino_icons
   cupertino_icons: ^1.0.6
 # https://pub.dev/packages/json_annotation
@@ -38,9 +39,11 @@ dev_dependencies:
 
 
 
+
 flutter:
   generate: true
   uses-material-design: true
+
 
   assets:
     - assets/images/ 
