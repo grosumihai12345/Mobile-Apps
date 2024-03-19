@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/utils/assets_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WeatherItem extends StatelessWidget {
   const WeatherItem(
@@ -8,12 +9,14 @@ class WeatherItem extends StatelessWidget {
     super.key,
     required this.textStyle,
   });
+
   final Weather weather;
   final TextStyle textStyle;
   Widget _buildTemperatureAndWeatherIcon({
-    required theme,
+    required context,
     required weather,
   }) {
+    var theme = Theme.of(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,10 +39,11 @@ class WeatherItem extends StatelessWidget {
   }
 
   Widget _buildTemperaturesLocationWeatherType({
-    required theme,
     required weather,
     required context,
   }) {
+    var theme = Theme.of(context);
+    var localization = AppLocalizations.of(context)!;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -48,7 +52,7 @@ class WeatherItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'H:${weather.temperatureMax}° L:${weather.temperatureMin}°',
+              '${localization.highestLabel}:${weather.temperatureMax}° ${localization.lowestLabel}:${weather.temperatureMin}°',
               style: theme.textTheme.bodyMedium,
               textAlign: TextAlign.start,
             ),
@@ -59,11 +63,9 @@ class WeatherItem extends StatelessWidget {
           ],
         ),
         Text(
-          weather.weatherType.description,
-          style: textStyle.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            color: Colors.white,
+          weather.weatherType.description(context),
+          style: theme.textTheme.bodyLarge?.copyWith(
+            fontSize: 16.0,
           ),
         ),
       ],
@@ -86,19 +88,16 @@ class WeatherItem extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(
-          16.0,
-        ),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildTemperatureAndWeatherIcon(
-              theme: Theme.of(context),
+              context: context,
               weather: weather,
             ),
             _buildTemperaturesLocationWeatherType(
-              theme: Theme.of(context),
               weather: weather,
               context: context,
             )

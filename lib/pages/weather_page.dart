@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:weather_app/widgets/weather_list/weather_list.dart';
 
 class WeatherPage extends StatelessWidget {
@@ -10,6 +10,8 @@ class WeatherPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    var localization = AppLocalizations.of(context)!;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -20,8 +22,8 @@ class WeatherPage extends StatelessWidget {
             ),
             radius: 0.6,
             colors: [
-              Theme.of(context).colorScheme.primary.withOpacity(0.0),
-              Theme.of(context).colorScheme.secondary,
+              theme.colorScheme.primary.withOpacity(0.0),
+              theme.colorScheme.secondary,
             ],
           ),
         ),
@@ -36,33 +38,21 @@ class WeatherPage extends StatelessWidget {
                   horizontal: 32.0,
                   vertical: 16.0,
                 ),
-                child: Text(
-                  'Weather',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
+                child: Text(localization.weatherLabel,
+                    style: theme.textTheme.displayLarge),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: CupertinoSearchTextField(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 5.0,
-                  ),
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
-                      ),
-                  backgroundColor:
-                      Theme.of(context).inputDecorationTheme.fillColor,
-                  itemColor: Theme.of(context).textTheme.bodyMedium!.color!,
+                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  style: theme.textTheme.bodyMedium,
+                  backgroundColor: theme.inputDecorationTheme.fillColor,
+                  itemColor: theme.textTheme.bodyMedium!.color!,
                   suffixMode: OverlayVisibilityMode.never,
                   prefixInsets: const EdgeInsets.all(6.0),
-                  placeholder: 'Search for a city or airport',
+                  placeholder: localization.searchPlaceholder,
                   placeholderStyle:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey,
-                            fontSize: 18,
-                          ),
+                      theme.textTheme.bodyMedium?.copyWith(fontSize: 18),
                 ),
               ),
               Expanded(child: WeatherList()),

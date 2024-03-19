@@ -1,0 +1,14 @@
+{
+  "helloWorld": "¡Hola Mundo!",
+  "midRainLabel": "Lluvia Moderada",
+  "tornadoLabel": "Tornado",
+  "electricalStormLabel": "Tormenta Eléctrica",
+  "cloudyLabel": "Nublado",
+  "fastWindLabel": "Viento Fuerte",
+  "rainyLabel": "Lluvioso",
+  "clearNightLabel": "Noche clara con brisa",
+  "searchPlaceholder": "Buscar una ciudad o aeropuerto",
+  "weatherLabel": "Clima",
+  "highestLabel": "A",
+  "lowestLabel": "B"
+}
