@@ -22,8 +22,8 @@ class LocationResult {
   @JsonKey(name: "admin4_id")
   final int? admin4Id;
   final String timezone;
-  final int population;
-  final List<String> postcodes;
+  final int? population;
+  final List<String>? postcodes;
   @JsonKey(name: "country_id")
   final int countryId;
   final String? country;
@@ -45,8 +45,8 @@ class LocationResult {
     this.admin3Id,
     this.admin4Id,
     required this.timezone,
-    required this.population,
-    required this.postcodes,
+    this.population,
+    this.postcodes,
     required this.countryId,
     this.country,
     this.admin1,

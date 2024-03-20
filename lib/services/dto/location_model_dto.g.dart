@@ -20,9 +20,10 @@ LocationResult _$LocationResultFromJson(Map<String, dynamic> json) =>
       admin3Id: json['admin3_id'] as int?,
       admin4Id: json['admin4_id'] as int?,
       timezone: json['timezone'] as String,
-      population: json['population'] as int,
-      postcodes:
-          (json['postcodes'] as List<dynamic>).map((e) => e as String).toList(),
+      population: json['population'] as int?,
+      postcodes: (json['postcodes'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       countryId: json['country_id'] as int,
       country: json['country'] as String?,
       admin1: json['admin1'] as String?,

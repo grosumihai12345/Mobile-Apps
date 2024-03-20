@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/services/dto/weather_model_dto.dart';
 import 'package:weather_app/services/weather_service.dart';
 import 'package:weather_app/services/location_service.dart';
 import 'package:weather_app/services/dto/location_model_dto.dart';
@@ -20,7 +19,7 @@ class MyAp extends StatelessWidget {
           title: const Text('Weather App'),
         ),
         body: FutureBuilder(
-          future: geocodingService.getCityData('Istanbul'),
+          future: geocodingService.getCityData('Negresti'),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -31,12 +30,12 @@ class MyAp extends StatelessWidget {
                 child: Text('Error: ${snapshot.error}'),
               );
             } else {
-              final locationData = snapshot.data as LocationResult;
-              final latitude = locationData.latitude;
-              final longitude = locationData.longitude;
+              final locationData1 = snapshot.data as LocationResult;
+              final latitude1 = locationData1.latitude;
+              final longitude1 = locationData1.longitude;
 
               return FutureBuilder(
-                future: _weatherService.fetchWeatherData(latitude, longitude),
+                future: geocodingService.getCityData('Berlin'),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
@@ -47,10 +46,54 @@ class MyAp extends StatelessWidget {
                       child: Text('Error: ${snapshot.error}'),
                     );
                   } else {
-                    final result = WeatherModelDTO.fromJson(snapshot.data!);
-                    print(result);
-                    return Center(
-                      child: Text('Weather data: ${snapshot.data}'),
+                    final locationData2 = snapshot.data as LocationResult;
+                    final latitude2 = locationData2.latitude;
+                    final longitude2 = locationData2.longitude;
+                    final List<Widget> listWeather = [
+                      FutureBuilder(
+                        future: _weatherService.fetchWeatherData(
+                            latitude1, longitude1),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text('Error: ${snapshot.error}'),
+                            );
+                          } else {
+                            return Text(
+                                'Weather data for Negresti: ${snapshot.data}');
+                          }
+                        },
+                      ),
+                      FutureBuilder(
+                        future: _weatherService.fetchWeatherData(
+                            latitude2, longitude2),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text('Error: ${snapshot.error}'),
+                            );
+                          } else {
+                            return Text(
+                                'Weather data for Berlin: ${snapshot.data}');
+                          }
+                        },
+                      ),
+                    ];
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: listWeather,
+                      ),
                     );
                   }
                 },

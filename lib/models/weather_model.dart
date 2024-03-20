@@ -1,3 +1,4 @@
+import 'package:weather_app/services/dto/weather_model_dto.dart';
 import 'package:weather_app/utils/assets_utils.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -62,4 +63,58 @@ class Weather {
   final int temperatureMin;
   final int temperatureMax;
   final WeatherType weatherType;
+
+  factory Weather.fromDto(WeatherModelDTO dto) {
+    WeatherType weatherType;
+    int weatherCode = dto.hourly.weatherCode[0];
+    switch (weatherCode) {
+      case 0:
+        weatherType = WeatherType.windyMoon;
+        break;
+      case 1:
+      case 2:
+      case 3:
+      case 45:
+      case 48:
+      case 71:
+      case 73:
+      case 75:
+      case 77:
+      case 85:
+      case 86:
+        weatherType = WeatherType.windyRainySun;
+        break;
+      case 51:
+      case 53:
+      case 55:
+      case 56:
+      case 57:
+        weatherType = WeatherType.rainyMoon;
+        break;
+      case 61:
+      case 63:
+      case 65:
+      case 66:
+      case 67:
+      case 80:
+      case 81:
+      case 82:
+        weatherType = WeatherType.windyMoon;
+        break;
+      case 95:
+      case 96:
+      case 99:
+        weatherType = WeatherType.windyRainySun;
+        break;
+      default:
+        weatherType = WeatherType.windyRainySun;
+    }
+    return Weather(
+      location: 'Iasi',
+      temperature: dto.hourly.temperature2m[0].toInt(),
+      temperatureMax: dto.daily.temperature2mMax[0].toInt(),
+      temperatureMin: dto.daily.temperature2mMin[0].toInt(),
+      weatherType: weatherType,
+    );
+  }
 }
