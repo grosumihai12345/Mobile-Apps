@@ -8,5 +8,7 @@
   "rainyLabel": "Lluvioso",
   "clearNightLabel": "Noche clara con brisa",
   "searchPlaceholder": "Buscar una ciudad o aeropuerto",
-  "weatherLabel": "Clima"
+  "weatherLabel": "Clima",
+  "highestLabel": "A",
+  "lowestLabel": "B"
 }

@@ -31,21 +31,22 @@ enum WeatherType {
   }
 
   String description(context) {
+    var localizations = AppLocalizations.of(context)!;
     switch (this) {
       case WeatherType.wind:
-        return AppLocalizations.of(context)!.tornadoLabel;
+        return localizations.tornadoLabel;
       case WeatherType.zap:
-        return AppLocalizations.of(context)!.electricalStormLabel;
+        return localizations.electricalStormLabel;
       case WeatherType.windyRainySun:
-        return AppLocalizations.of(context)!.cloudyLabel;
+        return localizations.cloudyLabel;
       case WeatherType.cloudyWindyMoon:
-        return AppLocalizations.of(context)!.fastWindLabel;
+        return localizations.fastWindLabel;
       case WeatherType.rainyMoon:
-        return AppLocalizations.of(context)!.midRainLabel;
+        return localizations.midRainLabel;
       case WeatherType.rainySun:
-        return AppLocalizations.of(context)!.rainyLabel;
+        return localizations.rainyLabel;
       case WeatherType.windyMoon:
-        return AppLocalizations.of(context)!.clearNightLabel;
+        return localizations.clearNightLabel;
     }
   }
 }
@@ -63,7 +64,6 @@ class Weather {
   final int temperatureMin;
   final int temperatureMax;
   final WeatherType weatherType;
-
   factory Weather.fromDto(WeatherModelDTO dto) {
     WeatherType weatherType;
     int weatherCode = dto.hourly.weatherCode[0];
