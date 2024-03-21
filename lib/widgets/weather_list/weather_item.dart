@@ -57,7 +57,7 @@ class WeatherItem extends StatelessWidget {
               textAlign: TextAlign.start,
             ),
             Text(
-              weather.location,
+              weather.locationName,
               style: theme.textTheme.bodyLarge,
             ),
           ],

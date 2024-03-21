@@ -1,12 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:weather_app/models/location_model.dart';
+import 'package:weather_app/models/weather_model.dart';
+import 'package:weather_app/services/dto/location_model_dto.dart';
+import 'package:weather_app/services/location_service.dart';
+import 'package:weather_app/services/weather_service.dart';
 import 'package:weather_app/widgets/weather_list/weather_list.dart';
 
 class WeatherPage extends StatelessWidget {
-  const WeatherPage({
+  WeatherPage({
     super.key,
   });
+  final WeatherService _weatherService =
+      WeatherService('https://api.open-meteo.com', 'v1');
+  final GeocodingService geocodingService =
+      GeocodingService('https://geocoding-api.open-meteo.com', 'v1');
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +64,57 @@ class WeatherPage extends StatelessWidget {
                       theme.textTheme.bodyMedium?.copyWith(fontSize: 18),
                 ),
               ),
-              Expanded(child: WeatherList()),
+              FutureBuilder(
+                future: Future.wait([
+                  geocodingService.getCityData('Iasi'),
+                  geocodingService.getCityData('Dubai'),
+                ]),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    );
+                  } else {
+                    final List<LocationResult> locationsDto =
+                        snapshot.data as List<LocationResult>;
+                    final List<Location> locations = locationsDto
+                        .map(
+                          (locationDto) => Location.fromDto(locationDto),
+                        )
+                        .toList();
+                    // final List<double> latitudes =
+                    //     locations.map((location) => location.latitude).toList();
+                    // final List<double> longitudes = locations
+                    //     .map((location) => location.longitude)
+                    //     .toList();
+
+                    return FutureBuilder(
+                      future: _weatherService.fetchWeatherData(locations),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                            child: Text('Error: ${snapshot.error}'),
+                          );
+                        } else {
+                          final List<Weather> weatherList =
+                              snapshot.data as List<Weather>;
+                          return Expanded(
+                              child: WeatherList(weatherList: weatherList));
+                        }
+                      },
+                    );
+                  }
+                },
+              ),
             ],
           ),
         ),

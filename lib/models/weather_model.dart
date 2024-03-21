@@ -53,20 +53,20 @@ enum WeatherType {
 
 class Weather {
   Weather({
-    required this.location,
-    required this.temperature,
+    required this.locationName,
+    this.temperature,
     required this.temperatureMin,
     required this.temperatureMax,
     required this.weatherType,
   });
-  final String location;
-  final int temperature;
+  final String locationName;
+  final int? temperature;
   final int temperatureMin;
   final int temperatureMax;
   final WeatherType weatherType;
-  factory Weather.fromDto(WeatherModelDTO dto) {
+  factory Weather.fromDtoWithName(WeatherData dto, String name) {
     WeatherType weatherType;
-    int weatherCode = dto.hourly.weatherCode[0];
+    int? weatherCode = dto.current?.weatherCode;
     switch (weatherCode) {
       case 0:
         weatherType = WeatherType.windyMoon;
@@ -110,10 +110,10 @@ class Weather {
         weatherType = WeatherType.windyRainySun;
     }
     return Weather(
-      location: 'Iasi',
-      temperature: dto.hourly.temperature2m[0].toInt(),
-      temperatureMax: dto.daily.temperature2mMax[0].toInt(),
-      temperatureMin: dto.daily.temperature2mMin[0].toInt(),
+      locationName: name,
+      temperature: dto.current?.temperature2m.toInt(),
+      temperatureMax: dto.daily!.temperature2mMax[0].toInt(),
+      temperatureMin: dto.daily!.temperature2mMin[0].toInt(),
       weatherType: weatherType,
     );
   }
