@@ -21,7 +21,7 @@ dependencies:
   uuid: ^4.3.3 
 # https://pub.dev/packages/google_fonts
   google_fonts: ^6.2.1 
-
+# https://pub.dev/packages/flutter_localization
   flutter_localizations:
     sdk: flutter
   intl: any

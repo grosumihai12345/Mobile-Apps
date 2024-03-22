@@ -1,17 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'weather_model_dto.g.dart';
 
-// @JsonSerializable()
-// class WeatherDataList {
-//   final List<WeatherData> data;
-
-//   WeatherDataList({required this.data});
-
-//   factory WeatherDataList.fromJson(Map<String, dynamic> json) =>
-//       _$WeatherDataListFromJson(json);
-//   Map<String, dynamic> toJson() => _$WeatherDataListToJson(this);
-// }
-
 @JsonSerializable()
 class WeatherData {
   final double latitude;
