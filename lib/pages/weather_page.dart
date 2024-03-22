@@ -66,9 +66,10 @@ class WeatherPage extends StatelessWidget {
               ),
               FutureBuilder(
                 future: Future.wait([
-                  geocodingService.getCityData('Albesti'),
-                  geocodingService.getCityData('Negresti'),
-                  geocodingService.getCityData('Bucuresti'),
+                  geocodingService.getCityData('Bengaluru'),
+                  geocodingService.getCityData('Sydney'),
+                  geocodingService.getCityData('Tokyo'),
+                  geocodingService.getCityData('Boende'),
                 ]),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

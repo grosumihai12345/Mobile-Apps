@@ -15,9 +15,8 @@ class WeatherService {
         locations.map((location) => location.latitude).toList().join(',');
     String longitudeParams =
         locations.map((location) => location.longitude).toList().join(',');
-
     final url =
-        '$baseUrl/$version/forecast?latitude=$latitudeParams&longitude=$longitudeParams&current=temperature_2m,is_day,precipitation,rain,weather_code,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=auto,Europe%2FBerlin';
+        '$baseUrl/$version/forecast?latitude=$latitudeParams&longitude=$longitudeParams&current=temperature_2m,is_day,precipitation,rain,weather_code,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=auto';
 
     final response = await http.get(Uri.parse(url));
     final dynamic rsp = json.decode(response.body);
