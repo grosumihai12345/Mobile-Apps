@@ -1,4 +1,7 @@
 class AssetsUtils {
+  static String snowIconPath = "assets/images/clouds/snow.png";
+  static String cloudyIconPath = "assets/images/clouds/cloudy.png";
+  static String sunnyIconPath = "assets/images/clouds/sun.png";
   static String windIconPath = "assets/images/clouds/wind.png";
   static String zapIconPath = "assets/images/clouds/zap.png";
   static String windyRainySunIconPath = "assets/images/clouds/rainy_sun.png";

@@ -66,8 +66,9 @@ class WeatherPage extends StatelessWidget {
               ),
               FutureBuilder(
                 future: Future.wait([
-                  geocodingService.getCityData('Iasi'),
-                  geocodingService.getCityData('Dubai'),
+                  geocodingService.getCityData('Albesti'),
+                  geocodingService.getCityData('Negresti'),
+                  geocodingService.getCityData('Bucuresti'),
                 ]),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -86,12 +87,6 @@ class WeatherPage extends StatelessWidget {
                           (locationDto) => Location.fromDto(locationDto),
                         )
                         .toList();
-                    // final List<double> latitudes =
-                    //     locations.map((location) => location.latitude).toList();
-                    // final List<double> longitudes = locations
-                    //     .map((location) => location.longitude)
-                    //     .toList();
-
                     return FutureBuilder(
                       future: _weatherService.fetchWeatherData(locations),
                       builder: (context, snapshot) {

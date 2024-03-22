@@ -9,6 +9,9 @@ enum WeatherType {
   windyMoon,
   windyRainySun,
   rainySun,
+  sunny,
+  cloudy,
+  snow,
   zap;
 
   String get iconPath {
@@ -27,6 +30,12 @@ enum WeatherType {
         return AssetsUtils.rainySunIconPath;
       case WeatherType.windyMoon:
         return AssetsUtils.windyMoonIconPath;
+      case WeatherType.sunny:
+        return AssetsUtils.sunnyIconPath;
+      case WeatherType.cloudy:
+        return AssetsUtils.cloudyIconPath;
+      case WeatherType.snow:
+        return AssetsUtils.snowIconPath;
     }
   }
 
@@ -38,7 +47,7 @@ enum WeatherType {
       case WeatherType.zap:
         return localizations.electricalStormLabel;
       case WeatherType.windyRainySun:
-        return localizations.cloudyLabel;
+        return localizations.windyRainySunLabel;
       case WeatherType.cloudyWindyMoon:
         return localizations.fastWindLabel;
       case WeatherType.rainyMoon:
@@ -47,6 +56,12 @@ enum WeatherType {
         return localizations.rainyLabel;
       case WeatherType.windyMoon:
         return localizations.clearNightLabel;
+      case WeatherType.sunny:
+        return localizations.sunnyLabel;
+      case WeatherType.cloudy:
+        return localizations.cloudyLabel;
+      case WeatherType.snow:
+        return localizations.snowLabel;
     }
   }
 }
@@ -65,50 +80,83 @@ class Weather {
   final int temperatureMax;
   final WeatherType weatherType;
   factory Weather.fromDtoWithName(WeatherData dto, String name) {
-    WeatherType weatherType;
     int? weatherCode = dto.current?.weatherCode;
-    switch (weatherCode) {
-      case 0:
-        weatherType = WeatherType.windyMoon;
-        break;
-      case 1:
-      case 2:
-      case 3:
-      case 45:
-      case 48:
-      case 71:
-      case 73:
-      case 75:
-      case 77:
-      case 85:
-      case 86:
-        weatherType = WeatherType.windyRainySun;
-        break;
-      case 51:
-      case 53:
-      case 55:
-      case 56:
-      case 57:
-        weatherType = WeatherType.rainyMoon;
-        break;
-      case 61:
-      case 63:
-      case 65:
-      case 66:
-      case 67:
-      case 80:
-      case 81:
-      case 82:
-        weatherType = WeatherType.windyMoon;
-        break;
-      case 95:
-      case 96:
-      case 99:
-        weatherType = WeatherType.windyRainySun;
-        break;
-      default:
-        weatherType = WeatherType.windyRainySun;
-    }
+    int? weatherIsDay = dto.current?.isDay;
+    WeatherType weatherType = (() {
+      switch (weatherCode) {
+        case 0:
+          if (weatherIsDay == 0) {
+            return WeatherType.windyMoon;
+          } else {
+            return WeatherType.sunny;
+          }
+        case 1:
+        case 2:
+        case 3:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.cloudy;
+          }
+        case 45:
+        case 48:
+        case 51:
+        case 53:
+        case 55:
+        case 61:
+        case 63:
+        case 65:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.rainySun;
+          }
+        case 66:
+        case 67:
+        case 71:
+        case 73:
+        case 75:
+        case 77:
+        case 85:
+        case 86:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.snow;
+          }
+        case 80:
+        case 81:
+        case 82:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.windyRainySun;
+          }
+        case 56:
+        case 57:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.rainyMoon;
+          }
+        case 95:
+          return WeatherType.zap;
+        case 96:
+        case 99:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.windyRainySun;
+          }
+        default:
+          if (weatherIsDay == 0) {
+            return WeatherType.cloudyWindyMoon;
+          } else {
+            return WeatherType.cloudy;
+          }
+      }
+    })();
+
     return Weather(
       locationName: name,
       temperature: dto.current?.temperature2m.toInt(),

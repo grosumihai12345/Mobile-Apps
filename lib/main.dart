@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:weather_app/pages/weather_page.dart';
-import 'package:weather_app/widgets/api_weather.dart';
-//import 'package:weather_app/pages/weather_page.dart';
 import 'package:weather_app/utils/colors_utils.dart';
 
 void main() {

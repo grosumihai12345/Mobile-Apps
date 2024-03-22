@@ -21,7 +21,6 @@ class WeatherService {
 
     final response = await http.get(Uri.parse(url));
     final dynamic rsp = json.decode(response.body);
-    print(rsp);
     if (response.statusCode == 200) {
       List<WeatherData> weatherDataList = List<WeatherData>.from(
           (rsp as List).map((model) => WeatherData.fromJson(model)));
