@@ -1,17 +1,17 @@
 {
-  "helloWorld": "Hello World!",
-  "cloudyLabel": "Mainly clear",
+  "nightTimeShowerLabel": "Nighttime Shower",
+  "mainlyClearLabel": "Mainly clear",
   "snowLabel": "Snow fall",
   "midRainLabel": "Mid Rain",
   "tornadoLabel": "Tornado",
   "electricalStormLabel": "Electrical Storm",
-  "windyRainySunLabel": "Cloudy",
+  "cloudyLabel": "Cloudy",
   "fastWindLabel": "Fast wind",
   "rainyLabel": "Rainy",
   "sunnyLabel": "Sunny",
   "clearNightLabel": "Clear night with a breeze",
   "searchPlaceholder": "Search for a city or airport",
   "weatherLabel": "Weather",
-  "highestLabel": "H",
-  "lowestLabel": "L"
+  "highestTemperatureShort": "H",
+  "lowestTemperatureShort": "L"
 }

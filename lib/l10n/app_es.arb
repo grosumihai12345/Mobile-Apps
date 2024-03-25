@@ -1,11 +1,11 @@
 {
-  "helloWorld": "¡Hola Mundo!",
-  "cloudyLabel": "Mayormente despejado",
+  "nightTimeShowerLabel": "Lluvia nocturna",
+  "mainlyClearLabel": "Mayormente despejado",
   "snowLabel": "Nieve",
   "midRainLabel": "Lluvia moderada",
   "tornadoLabel": "Tornado",
   "electricalStormLabel": "Tormenta eléctrica",
-  "windyRainySunLabel": "Nublado",
+  "cloudyLabel": "Nublado",
   "fastWindLabel": "Viento rápido",
   "rainyLabel": "Lluvioso",
   "sunnyLabel": "Soleado",
@@ -13,5 +13,5 @@
   "searchPlaceholder": "Buscar una ciudad o aeropuerto",
   "weatherLabel": "Clima",
   "highestLabel": "A",
-  "lowestLabel": "B"
+  "lowestTemperatureShort": "B"
 }

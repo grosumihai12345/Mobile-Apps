@@ -52,7 +52,7 @@ class WeatherItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${localization.highestLabel}:${weather.temperatureMax}° ${localization.lowestLabel}:${weather.temperatureMin}°',
+              '${localization.highestTemperatureShort}:${weather.temperatureMax}° ${localization.lowestTemperatureShort}:${weather.temperatureMin}°',
               style: theme.textTheme.bodyMedium,
               textAlign: TextAlign.start,
             ),

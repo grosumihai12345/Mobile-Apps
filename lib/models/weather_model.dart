@@ -4,13 +4,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 enum WeatherType {
   cloudyWindyMoon,
-  rainyMoon,
+  nightTimeShower,
   wind,
   windyMoon,
-  windyRainySun,
+  cloudy,
   rainySun,
   sunny,
-  cloudy,
+  mainlyClear,
   snow,
   zap;
 
@@ -20,20 +20,20 @@ enum WeatherType {
         return AssetsUtils.windIconPath;
       case WeatherType.zap:
         return AssetsUtils.zapIconPath;
-      case WeatherType.windyRainySun:
-        return AssetsUtils.windyRainySunIconPath;
+      case WeatherType.cloudy:
+        return AssetsUtils.cloudyIconPath;
       case WeatherType.cloudyWindyMoon:
         return AssetsUtils.cloudyWindyMoonIconPath;
-      case WeatherType.rainyMoon:
-        return AssetsUtils.rainyMoonIconPath;
+      case WeatherType.nightTimeShower:
+        return AssetsUtils.nightTimeShowerIconPath;
       case WeatherType.rainySun:
         return AssetsUtils.rainySunIconPath;
       case WeatherType.windyMoon:
         return AssetsUtils.windyMoonIconPath;
       case WeatherType.sunny:
         return AssetsUtils.sunnyIconPath;
-      case WeatherType.cloudy:
-        return AssetsUtils.cloudyIconPath;
+      case WeatherType.mainlyClear:
+        return AssetsUtils.mainlyClearIconPath;
       case WeatherType.snow:
         return AssetsUtils.snowIconPath;
     }
@@ -46,20 +46,20 @@ enum WeatherType {
         return localizations.tornadoLabel;
       case WeatherType.zap:
         return localizations.electricalStormLabel;
-      case WeatherType.windyRainySun:
-        return localizations.windyRainySunLabel;
+      case WeatherType.cloudy:
+        return localizations.cloudyLabel;
       case WeatherType.cloudyWindyMoon:
         return localizations.fastWindLabel;
-      case WeatherType.rainyMoon:
-        return localizations.midRainLabel;
+      case WeatherType.nightTimeShower:
+        return localizations.nightTimeShowerLabel;
       case WeatherType.rainySun:
         return localizations.rainyLabel;
       case WeatherType.windyMoon:
         return localizations.clearNightLabel;
       case WeatherType.sunny:
         return localizations.sunnyLabel;
-      case WeatherType.cloudy:
-        return localizations.cloudyLabel;
+      case WeatherType.mainlyClear:
+        return localizations.mainlyClearLabel;
       case WeatherType.snow:
         return localizations.snowLabel;
     }
@@ -96,7 +96,7 @@ class Weather {
           if (weatherIsDay == 0) {
             return WeatherType.cloudyWindyMoon;
           } else {
-            return WeatherType.cloudy;
+            return WeatherType.mainlyClear;
           }
         case 45:
         case 48:
@@ -130,14 +130,14 @@ class Weather {
           if (weatherIsDay == 0) {
             return WeatherType.cloudyWindyMoon;
           } else {
-            return WeatherType.windyRainySun;
+            return WeatherType.cloudy;
           }
         case 56:
         case 57:
           if (weatherIsDay == 0) {
             return WeatherType.cloudyWindyMoon;
           } else {
-            return WeatherType.rainyMoon;
+            return WeatherType.nightTimeShower;
           }
         case 95:
           return WeatherType.zap;
@@ -146,13 +146,13 @@ class Weather {
           if (weatherIsDay == 0) {
             return WeatherType.cloudyWindyMoon;
           } else {
-            return WeatherType.windyRainySun;
+            return WeatherType.cloudy;
           }
         default:
           if (weatherIsDay == 0) {
             return WeatherType.cloudyWindyMoon;
           } else {
-            return WeatherType.cloudy;
+            return WeatherType.mainlyClear;
           }
       }
     })();
