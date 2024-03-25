@@ -66,6 +66,63 @@ enum WeatherType {
   }
 }
 
+WeatherType determineWeatherType(int? weatherCode, int? weatherIsDay) {
+  switch (weatherCode) {
+    case 0:
+      return (weatherIsDay == 0) ? WeatherType.windyMoon : WeatherType.sunny;
+    case 1:
+    case 2:
+    case 3:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.mainlyClear;
+    case 45:
+    case 48:
+    case 51:
+    case 53:
+    case 55:
+    case 61:
+    case 63:
+    case 65:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.rainySun;
+    case 66:
+    case 67:
+    case 71:
+    case 73:
+    case 75:
+    case 77:
+    case 85:
+    case 86:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.snow;
+    case 80:
+    case 81:
+    case 82:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.cloudy;
+    case 56:
+    case 57:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.nightTimeShower;
+    case 95:
+      return WeatherType.zap;
+    case 96:
+    case 99:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.cloudy;
+    default:
+      return (weatherIsDay == 0)
+          ? WeatherType.cloudyWindyMoon
+          : WeatherType.mainlyClear;
+  }
+}
+
 class Weather {
   Weather({
     required this.locationName,
@@ -82,81 +139,7 @@ class Weather {
   factory Weather.fromDtoWithName(WeatherData dto, String name) {
     int? weatherCode = dto.current?.weatherCode;
     int? weatherIsDay = dto.current?.isDay;
-    WeatherType weatherType = (() {
-      switch (weatherCode) {
-        case 0:
-          if (weatherIsDay == 0) {
-            return WeatherType.windyMoon;
-          } else {
-            return WeatherType.sunny;
-          }
-        case 1:
-        case 2:
-        case 3:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.mainlyClear;
-          }
-        case 45:
-        case 48:
-        case 51:
-        case 53:
-        case 55:
-        case 61:
-        case 63:
-        case 65:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.rainySun;
-          }
-        case 66:
-        case 67:
-        case 71:
-        case 73:
-        case 75:
-        case 77:
-        case 85:
-        case 86:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.snow;
-          }
-        case 80:
-        case 81:
-        case 82:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.cloudy;
-          }
-        case 56:
-        case 57:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.nightTimeShower;
-          }
-        case 95:
-          return WeatherType.zap;
-        case 96:
-        case 99:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.cloudy;
-          }
-        default:
-          if (weatherIsDay == 0) {
-            return WeatherType.cloudyWindyMoon;
-          } else {
-            return WeatherType.mainlyClear;
-          }
-      }
-    })();
-
+    WeatherType weatherType = determineWeatherType(weatherCode, weatherIsDay);
     return Weather(
       locationName: name,
       temperature: dto.current?.temperature2m.toInt(),
