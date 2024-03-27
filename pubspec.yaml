@@ -27,6 +27,8 @@ dependencies:
   intl: any
 # https://pub.dev/packages/http
   http: ^1.2.1
+# https://pub.dev/packages/riverpod
+  riverpod: ^2.5.1
 
 
 dev_dependencies:
